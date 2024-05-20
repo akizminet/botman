@@ -16,6 +16,7 @@
     <skipITs>true</skipITs>
     <surefire-plugin.version>3.2.5</surefire-plugin.version>
     <quarkus-mybatis.version>2.2.2</quarkus-mybatis.version>
+    <spotless.version>2.43.0</spotless.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -118,6 +119,20 @@
             <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
             <maven.home>${maven.home}</maven.home>
           </systemPropertyVariables>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.diffplug.spotless</groupId>
+        <artifactId>spotless-maven-plugin</artifactId>
+        <version>${spotless.version}</version>
+        <configuration>
+          <java>
+            <palantirJavaFormat>
+              <version>2.46.0</version>                    
+              <style>PALANTIR</style>                      
+              <formatJavadoc>true</formatJavadoc>
+            </palantirJavaFormat>
+          </java>
         </configuration>
       </plugin>
     </plugins>

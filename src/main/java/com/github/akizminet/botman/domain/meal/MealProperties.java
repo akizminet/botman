@@ -1,9 +1,8 @@
 package com.github.akizminet.botman.domain.meal;
 
-import java.util.ArrayList;
-
 import com.github.akizminet.botman.domain.telegram.InlineKeyboardButton;
 import com.github.akizminet.botman.domain.telegram.InlineKeyboardMarkup;
+import java.util.ArrayList;
 
 public sealed interface MealProperties {
     public InlineKeyboardMarkup markup();
@@ -26,7 +25,5 @@ public sealed interface MealProperties {
             buttons.add(row);
             return new InlineKeyboardMarkup(buttons);
         }
-
     }
-
 }

@@ -1,22 +1,20 @@
 package com.github.akizminet.botman.domain.meal;
 
+import com.github.akizminet.botman.domain.telegram.InlineKeyboardButton;
+import com.github.akizminet.botman.domain.telegram.InlineKeyboardMarkup;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import com.github.akizminet.botman.domain.telegram.InlineKeyboardButton;
-import com.github.akizminet.botman.domain.telegram.InlineKeyboardMarkup;
-
-public record Meal(
-        MealId id, OffsetDateTime date, MealProperties properties) {
+public record Meal(MealId id, OffsetDateTime date, MealProperties properties) {
 
     public static final String QUESTION = "Ngày mai %s bạn ăn những buổi nào?";
     public static final String CONFIRM = "Ngày %s bạn ăn %s";
 
     public final Optional<Meal> choose(MealButton option) {
         return switch (properties) {
-            case MealProperties.Poll p ->
-                Optional.of(new Meal(id, date, new MealProperties.Poll(p.options().withClickedMeal(option))));
+            case MealProperties.Poll p -> Optional.of(
+                    new Meal(id, date, new MealProperties.Poll(p.options().withClickedMeal(option))));
             case MealProperties.Confirmed _c -> Optional.empty();
         };
     }
@@ -38,7 +36,8 @@ public record Meal(
     public final String message() {
         return switch (properties) {
             case MealProperties.Poll p -> String.format(QUESTION, date.toLocalDate());
-            case MealProperties.Confirmed c -> String.format(CONFIRM, date.toLocalDate(),c.result().description());
+            case MealProperties.Confirmed c -> String.format(
+                    CONFIRM, date.toLocalDate(), c.result().description());
         };
     }
 
@@ -53,5 +52,4 @@ public record Meal(
             return new InlineKeyboardMarkup(buttons);
         }
     }
-
 }

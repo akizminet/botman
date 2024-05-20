@@ -1,8 +1,8 @@
 package com.github.akizminet.botman.domain.telegram.methods;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "method")
 @JsonSubTypes({
@@ -12,5 +12,4 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
     @Type(value = EditMessageText.class, name = "editMessageReplyMarkup"),
     @Type(value = EditMessageText.class, name = "editMessageText")
 })
-public interface Method {
-}
+public interface Method {}

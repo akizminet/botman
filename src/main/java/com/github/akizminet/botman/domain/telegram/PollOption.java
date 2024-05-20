@@ -1,5 +1,3 @@
 package com.github.akizminet.botman.domain.telegram;
 
-public class PollOption {
-
-}
+public class PollOption {}

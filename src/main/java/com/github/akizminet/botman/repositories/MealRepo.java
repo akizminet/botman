@@ -1,18 +1,16 @@
 package com.github.akizminet.botman.repositories;
 
-import java.util.Optional;
-
 import com.github.akizminet.botman.domain.meal.Meal;
 import com.github.akizminet.botman.domain.meal.MealId;
 import com.github.akizminet.botman.repositories.batis.MealRow;
 import com.github.akizminet.botman.repositories.batis.MealRowMapper;
-
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import java.util.Optional;
 
 @ApplicationScoped
 public class MealRepo {
-    
+
     @Inject
     MealRowMapper mealRowMapper;
 

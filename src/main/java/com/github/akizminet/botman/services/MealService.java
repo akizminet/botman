@@ -1,9 +1,5 @@
 package com.github.akizminet.botman.services;
 
-import java.time.OffsetDateTime;
-
-import org.eclipse.microprofile.rest.client.inject.RestClient;
-
 import com.github.akizminet.botman.domain.meal.Meal;
 import com.github.akizminet.botman.domain.meal.MealButton;
 import com.github.akizminet.botman.domain.meal.MealCalendar;
@@ -13,11 +9,11 @@ import com.github.akizminet.botman.domain.telegram.methods.EditMessageReplyMarku
 import com.github.akizminet.botman.domain.telegram.methods.EditMessageText;
 import com.github.akizminet.botman.domain.telegram.methods.SendMessage;
 import com.github.akizminet.botman.repositories.MealRepo;
-
 import io.quarkus.logging.Log;
-import io.smallrye.common.annotation.RunOnVirtualThread;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import java.time.OffsetDateTime;
+import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 @ApplicationScoped
 public class MealService {
@@ -61,18 +57,18 @@ public class MealService {
         final var mealOpt = mealRepo.findById(id);
         if (mealOpt.isPresent()) {
             final var meal = mealOpt.get();
-            final var newMeal = switch (button) {
-                case MealButton.BREAKFAST -> meal.choose(button);
-                case MealButton.LUNCH -> meal.choose(button);
-                case MealButton.DINNER -> meal.choose(button);
-                case MealButton.CONFIRM -> meal.confirm();
-                case MealButton.EDIT -> meal.edit();
-            };
+            final var newMeal =
+                    switch (button) {
+                        case MealButton.BREAKFAST -> meal.choose(button);
+                        case MealButton.LUNCH -> meal.choose(button);
+                        case MealButton.DINNER -> meal.choose(button);
+                        case MealButton.CONFIRM -> meal.confirm();
+                        case MealButton.EDIT -> meal.edit();
+                    };
             if (newMeal.isPresent()) {
                 mealRepo.save(newMeal.get());
                 publish(button, newMeal.get());
             }
         }
     }
-
 }

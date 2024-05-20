@@ -8,7 +8,6 @@ public enum MealButton {
     DINNER,
     CONFIRM,
     EDIT;
-    ;
 
     @Override
     public String toString() {
@@ -22,12 +21,9 @@ public enum MealButton {
     }
 
     public InlineKeyboardButton getInlineKeyboardButton(Boolean activated) {
-        if (this == EDIT)
-            return new InlineKeyboardButton("Sửa", this.name());
-        if (this == CONFIRM)
-            return new InlineKeyboardButton("Chốt", this.name());
+        if (this == EDIT) return new InlineKeyboardButton("Sửa", this.name());
+        if (this == CONFIRM) return new InlineKeyboardButton("Chốt", this.name());
         var activatedText = activated ? String.format("✅ %s", this.toString()) : this.toString();
         return new InlineKeyboardButton(activatedText, this.name());
-
     }
 }

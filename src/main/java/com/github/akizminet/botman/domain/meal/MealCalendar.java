@@ -1,10 +1,9 @@
 package com.github.akizminet.botman.domain.meal;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.github.akizminet.botman.domain.telegram.InlineKeyboardButton;
 import com.github.akizminet.botman.domain.telegram.InlineKeyboardMarkup;
+import java.util.ArrayList;
+import java.util.List;
 
 public record MealCalendar(Boolean breakfast, Boolean lunch, Boolean dinner) {
 
@@ -23,12 +22,9 @@ public record MealCalendar(Boolean breakfast, Boolean lunch, Boolean dinner) {
 
     public final String description() {
         List<String> desc = new ArrayList<>();
-        if (breakfast)
-            desc.add(MealButton.BREAKFAST.toString());
-        if (lunch)
-            desc.add(MealButton.LUNCH.toString());
-        if (dinner)
-            desc.add(MealButton.DINNER.toString());
+        if (breakfast) desc.add(MealButton.BREAKFAST.toString());
+        if (lunch) desc.add(MealButton.LUNCH.toString());
+        if (dinner) desc.add(MealButton.DINNER.toString());
         return String.join("+", desc);
     }
 

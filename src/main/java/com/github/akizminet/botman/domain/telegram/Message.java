@@ -11,5 +11,4 @@ public record Message(
         Long date,
         Chat chat,
         String text,
-        List<MessageEntity> entities
-){}
+        List<MessageEntity> entities) {}

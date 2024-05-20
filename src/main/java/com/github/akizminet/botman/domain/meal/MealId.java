@@ -1,5 +1,3 @@
 package com.github.akizminet.botman.domain.meal;
 
-public record MealId(int chatId, int messageId) {
-    
-}
+public record MealId(int chatId, int messageId) {}
